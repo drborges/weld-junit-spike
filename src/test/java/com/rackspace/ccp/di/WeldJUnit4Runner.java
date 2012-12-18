@@ -11,7 +11,6 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 
 public class WeldJUnit4Runner extends BlockJUnit4ClassRunner {
- 
 	private static Weld weld;
 	
 	private final WeldContainer container;
@@ -27,16 +26,14 @@ public class WeldJUnit4Runner extends BlockJUnit4ClassRunner {
     @Override
     public void run(RunNotifier notifier) {
     	super.run(notifier);
-    	System.out.println("le finish test");
-    	container.event().fire(new TestFinished(klass));
-    	weld.shutdown();
+    	container.event().select(TestFinished.class).fire(new TestFinished(klass));
+    	//weld.shutdown();
     }
     
     @Override
     protected Object createTest() throws Exception {
-    	System.out.println("le start test");
         final Object test = container.instance().select(klass).get();
-        container.event().fire(new TestRunning(klass));
+        container.event().select(TestStarted.class).fire(new TestStarted(klass));
         return test;
     }
 }

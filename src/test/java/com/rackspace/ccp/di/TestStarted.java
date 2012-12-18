@@ -1,9 +1,9 @@
 package com.rackspace.ccp.di;
 
-public class TestRunning {
+public class TestStarted {
 	private final Class testClass;
 
-	public TestRunning(Class testClass) {
+	public TestStarted(Class testClass) {
 		this.testClass = testClass;
 	}
 

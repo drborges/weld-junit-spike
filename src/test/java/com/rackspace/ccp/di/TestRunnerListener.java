@@ -4,7 +4,7 @@ import javax.enterprise.event.Observes;
 
 public class TestRunnerListener {
 
-	public void onTestRunning(@Observes TestRunning event) {
+	public void onTestRunning(@Observes TestStarted event) {
 		System.out.println("Test just started: " + event.getTestClass().getName());
 	}
 	
